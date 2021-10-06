@@ -1,0 +1,39 @@
+{
+  "name": "T3JS-Version-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js-datei.js",
+  "dependencies": {
+    "webpack": "^5.57.1",
+    "webpack-cli": "^4.8.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.3.0",
+    "file-loader": "^6.2.0",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.4.1",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.3.0",
+    "webpack-dev-server": "^4.3.1"
+  },
+  "scripts": {
+    "build": "webpack --mode development",
+    "start:dev": "webpack-dev-server --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shabo-95/T3JS-Version-2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shabo-95/T3JS-Version-2/issues"
+  },
+  "homepage": "https://github.com/Shabo-95/T3JS-Version-2#readme"
+}

@@ -1,3 +1,5 @@
+import "./styles/main.scss";
+
 Box.Application.addModule("accordion", function (context) {
   return {
     // This Section is for onClick (Messaging)
