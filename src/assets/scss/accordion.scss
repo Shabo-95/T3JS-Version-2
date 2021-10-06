@@ -2,28 +2,29 @@
   max-width: 600px;
   margin: 4rem auto;
   width: 200%;
-  font-family: "Raleway", sans-serif;
-  background: #f4f4f4;
+  // font-family: "Raleway", sans-serif;
+  font-family: $acc-font;
+  background: $acc-content-backgroundColor;
 
   &__title {
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     padding: 1rem 1.5rem;
-    background: #5b5f97;
-    color: white;
+    background: $acc-title-backgroundColor;
+    color: $acc-title-fontColor;
     cursor: pointer;
     transition: 0.3s ease;
 
     &:hover {
-      background: #484b77;
+      background: $acc-title-hover-backgroundColor;
     }
   }
 
   &__content {
     display: none;
     padding: 1rem 1.5rem 2rem 1.5rem;
-    color: gray;
+    color: $acc-content-fontColor;
     line-height: 1.6;
     font-size: 14px;
     font-weight: 500;
