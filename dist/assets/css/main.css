@@ -1,0 +1,48 @@
+/*!********************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/assets/scss/main.scss ***!
+  \********************************************************************************************************************/
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url(../../assets/fonts/Roboto-Regular.ttf) format("truetype");
+}
+.imageContainer__image {
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container__content {
+  width: 50%;
+}
+
+.accordion {
+  max-width: 600px;
+  margin: 4rem auto;
+  width: 200%;
+  font-family: "Roboto-Regular";
+  background: #f4f4f4;
+}
+.accordion__title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 1rem 1.5rem;
+  background: #5b5f97;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.accordion__title:hover {
+  background: #484b77;
+}
+.accordion__content {
+  display: none;
+  padding: 1rem 1.5rem 2rem 1.5rem;
+  color: gray;
+  line-height: 1.6;
+  font-size: 14px;
+  font-weight: 500;
+}

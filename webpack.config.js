@@ -1,13 +1,13 @@
 var path = require("path");
+var autoprefixer = require("autoprefixer");
 
 // Recreates the Html-File from the Orginal File
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 // 1) The Following Command does Delete the Dist Folder after Typing "npm run build" and make a new one
 // 2) The Following Command does Delete the Dist Folder after Typing "npm run start:dev"
 // const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-
-console.log("path.resolve(__dirname, 'src')", path.resolve(__dirname, "src"));
 
 module.exports = {
   entry: "./src/assets/js/app.js",
@@ -15,7 +15,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "assets/js/bundle.js",
-    // publicPath: "/dist",
   },
   module: {
     rules: [
@@ -37,7 +36,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
         test: /\.(png|jpg|gif|svg|jpeg)$/,
@@ -45,16 +44,6 @@ module.exports = {
         generator: {
           filename: "assets/images/[name][ext]",
         },
-        // use: [
-        //   {
-        //     loader: "file-loader",
-        //     options: {
-        //       name: "[name].[ext]",
-        //       publicPath: "assets/images/",
-        //       outputPath: "assets/images/",
-        //     },
-        //   },
-        // ],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -62,14 +51,6 @@ module.exports = {
         generator: {
           filename: "assets/fonts/[name][ext]",
         },
-        /* This is the Syntax of the Old Webpack Version */
-
-        // loader: "file-loader",
-        // options: {
-        //   // name: "[name].[ext]",
-        //   // outputPath: "assets/fonts/",
-        //   // publicPath: "../fonts/",
-        // },
       },
     ],
   },
@@ -79,8 +60,7 @@ module.exports = {
       filename: "index.html",
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css",
+      filename: "assets/css/[name].css",
     }),
     // new CleanWebpackPlugin({
     //   cleanAfterEveryBuildPatterns: ["dist"],
