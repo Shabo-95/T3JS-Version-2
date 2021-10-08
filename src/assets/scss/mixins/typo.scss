@@ -1,0 +1,7 @@
+// With Mixin you can Replace a Block of Code into One Word, not Just that there is much more usecases that mixin will help you
+
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

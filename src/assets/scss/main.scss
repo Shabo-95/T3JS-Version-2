@@ -1,5 +1,4 @@
-@import "variables";
-@import "webfont";
-@import "imageContainer";
-@import "app";
-@import "accordion";
+@import "./variables/variables";
+@import "./mixins/typo";
+@import "./webfonts/webfonts";
+@import "./modules/modules";

@@ -1,0 +1,7 @@
+.container {
+  @include flexCenter;
+
+  &__content {
+    width: 50%;
+  }
+}
