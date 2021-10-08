@@ -1,3 +1,5 @@
+/* Webpack Version: 5.57.1 */
+
 var path = require("path");
 var autoprefixer = require("autoprefixer");
 
@@ -36,7 +38,12 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
+        ],
       },
       {
         test: /\.(png|jpg|gif|svg|jpeg)$/,
