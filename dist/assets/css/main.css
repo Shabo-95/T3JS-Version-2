@@ -5,11 +5,7 @@
   font-family: "Roboto-Regular";
   src: url(../../assets/fonts/Roboto-Regular.ttf) format("truetype");
 }
-.imageContainer__image {
-  width: 100%;
-}
-
-.container {
+.customContainer {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -22,15 +18,15 @@
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-top: 5%;
 }
-.container__content {
-  width: 50%;
+.customContainer__content {
+  width: 70%;
 }
 
 .accordion {
-  max-width: 600px;
+  max-width: 50%;
   margin: 4rem auto;
-  width: 200%;
   font-family: "Roboto-Regular";
   background: #f4f4f4;
 }
@@ -55,4 +51,8 @@
   line-height: 1.6;
   font-size: 14px;
   font-weight: 500;
+}
+
+.imageContainer__image {
+  width: 100%;
 }
