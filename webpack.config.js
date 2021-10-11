@@ -80,6 +80,8 @@ module.exports = {
       "@fonts": path.resolve(__dirname, "src/assets/fonts"),
       "@images": path.resolve(__dirname, "src/assets/images"),
       "@scss": path.resolve(__dirname, "src/assets/scss"),
+      "@modules": path.resolve(__dirname, "src/assets/js/modules"),
+      "@services": path.resolve(__dirname, "src/assets/js/services"),
     },
   },
 };
