@@ -5,8 +5,10 @@ Box.Application.addModule("accordion", function (context) {
         "resize",
         function () {
           // This Service is for Changing Accordion Color When We Resize Window
-          const popupsService = Box.Application.getService("popups");
-          popupsService.onResize();
+          const onResizeChangeAccColorService = Box.Application.getService(
+            "onResizeChangeAccColor"
+          );
+          onResizeChangeAccColorService.onResize();
         },
         true
       );
