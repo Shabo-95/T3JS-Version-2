@@ -1,10 +1,28 @@
 Box.Application.addModule("accordion", function (context) {
+  const moduleElement = context.getElement();
+
+  // This Function Will Open The Selected Accordion
+  const _toggleAccordion = (element) => {
+    let panel = element.nextElementSibling;
+
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  };
+  // This Function Will Close All Other Accordions From The Other Accordion
+  const _closeAllOthers = (selectedAccordion) => {
+    Box.Application.broadcast("closeOtherAccordion", {
+      result: selectedAccordion,
+    });
+  };
   return {
     init: function () {
       window.addEventListener(
         "resize",
         function () {
-          // This Service is for Changing Accordion Color When We Resize Window
+          // This Service Will be Activated When We Resize The Window
           const onResizeChangeAccColorService = Box.Application.getService(
             "onResizeChangeAccColor"
           );
@@ -18,81 +36,40 @@ Box.Application.addModule("accordion", function (context) {
     onclick: function (event, element, elementType) {
       switch (elementType) {
         case "js-title":
-          // Triggers output of "Navigating somewhere!"
-          Box.Application.broadcast("closeSecondAccordion");
-          // block => accordion auf (offen)
-          // none => accordion zu (geschlossen)
+          // Hier We Will Select The Parent Accordion
+          selectedAccordion = moduleElement;
 
-          var panel = element.nextElementSibling;
-          if (panel.style.display === "block") {
-            panel.style.display = "none";
-          } else {
-            panel.style.display = "block";
-          }
-          break;
-
-        case "js-title2":
-          Box.Application.broadcast("closeFirstAccordion");
-
-          var panel = element.nextElementSibling;
-          if (panel.style.display === "block") {
-            panel.style.display = "none";
-          } else {
-            panel.style.display = "block";
-          }
+          _toggleAccordion(element);
+          _closeAllOthers(selectedAccordion);
 
           break;
       }
     },
-
-    // This Section Will be Activated When We Resize The Window
-    // onresize: function (event, element, elementType) {
-    //   console.log("!!!!!!!!!!!!!!");
-    //   console.log("element!!!! =", element);
-    // },
-
     // This Section is for Broadcasting (Messaging)
-    messages: ["closeSecondAccordion", "closeFirstAccordion"],
+    messages: ["closeOtherAccordion"],
     onmessage: function (name, data) {
       switch (name) {
-        case "closeSecondAccordion":
-          console.log("Close Second Accordion");
+        case "closeOtherAccordion":
+          console.log("data.result =", data.result);
+          console.log("moduleElement =", moduleElement);
 
-          accordion2Items = document.getElementsByClassName("js-title2");
-          var i;
-
-          for (i = 0; i < accordion2Items.length; i++) {
-            accordion2Items[i].nextElementSibling.style.display = "none";
+          if (data.result !== moduleElement) {
+            for (i = 0; i < data.result.children.length; i++) {
+              data.result.nextElementSibling.children[
+                i
+              ].children[1].style.display = "none";
+            }
+          } else {
+            for (i = 0; i < data.result.children.length; i++) {
+              data.result.previousElementSibling.children[
+                i
+              ].children[1].style.display = "none";
+            }
           }
-
-          if (panel.style.display === "block") {
-            panel.style.display = "none";
-          }
-
-          break;
-
-        case "closeFirstAccordion":
-          console.log("Close First Accordion");
-
-          accordion1Items = document.getElementsByClassName("js-title");
-          var i;
-
-          for (i = 0; i < accordion1Items.length; i++) {
-            accordion1Items[i].nextElementSibling.style.display = "none";
-          }
-
-          if (panel.style.display === "block") {
-            panel.style.display = "none";
-          }
-
           break;
       }
     },
   };
 });
 
-var moduleEl = document.getElementById("accordion-id");
-var moduleEl2 = document.getElementById("accordion-id2");
-
-Box.Application.start(moduleEl);
-Box.Application.start(moduleEl2);
+Box.Application.startAll(document);
