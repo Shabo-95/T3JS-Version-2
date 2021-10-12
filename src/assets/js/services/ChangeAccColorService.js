@@ -1,6 +1,8 @@
-Box.Application.addService("onResizeChangeAccColor", function (application) {
+Box.Application.addService("ChangeAccColorService", function (application) {
+  let isInitialized = false;
+
   return {
-    onResize: function () {
+    onResize: () => {
       // This Section Will Output The Window With & Height
 
       // console.log(
@@ -29,6 +31,12 @@ Box.Application.addService("onResizeChangeAccColor", function (application) {
         if (window.innerWidth <= 1150) {
           accordion_header[i].style.backgroundColor = "#7ff7ff";
         }
+      }
+    },
+    init: () => {
+      if (!isInitialized) {
+        isInitialized = true;
+        _onResize();
       }
     },
   };

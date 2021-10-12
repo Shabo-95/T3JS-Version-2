@@ -1,4 +1,9 @@
 Box.Application.addModule("accordion", function (context) {
+  // This Service Will be Activated When We Resize The Window
+  const ChangeAccColorService = Box.Application.getService(
+    "ChangeAccColorService"
+  );
+
   const moduleElement = context.getElement();
 
   // This Function Will Open The Selected Accordion
@@ -17,19 +22,24 @@ Box.Application.addModule("accordion", function (context) {
       result: selectedAccordion,
     });
   };
+
+  const _init = () => {
+    window.addEventListener(
+      "resize",
+      function () {
+        ChangeAccColorService.onResize();
+      },
+      true
+    );
+  };
+
+  const _changeVisibility = (element) => {
+    element.style.display = "none";
+  };
+
   return {
     init: function () {
-      window.addEventListener(
-        "resize",
-        function () {
-          // This Service Will be Activated When We Resize The Window
-          const onResizeChangeAccColorService = Box.Application.getService(
-            "onResizeChangeAccColor"
-          );
-          onResizeChangeAccColorService.onResize();
-        },
-        true
-      );
+      _init();
     },
 
     // This Section is for onClick (Messaging)
@@ -50,26 +60,25 @@ Box.Application.addModule("accordion", function (context) {
     onmessage: function (name, data) {
       switch (name) {
         case "closeOtherAccordion":
-          console.log("data.result =", data.result);
-          console.log("moduleElement =", moduleElement);
-
+          // console.log("data.result =", data.result);
+          // console.log("moduleElement =", moduleElement);
           if (data.result !== moduleElement) {
-            for (i = 0; i < data.result.children.length; i++) {
-              data.result.nextElementSibling.children[
-                i
-              ].children[1].style.display = "none";
-            }
-          } else {
-            for (i = 0; i < data.result.children.length; i++) {
-              data.result.previousElementSibling.children[
-                i
-              ].children[1].style.display = "none";
-            }
+            // Hier We Will Select The Other Accordion
+            const accordionContent = moduleElement.querySelectorAll(
+              ".accordion__content"
+            );
+            // 1) First Methode: With Foreach
+            accordionContent.forEach(
+              (element) => (element.style.display = "none")
+            );
+
+            // 2) Second Methode: With Normal For
+            // for (i = 0; i < accordionContent.length; i++) {
+            //   accordionContent[i].style.display = "none";
+            // }
           }
           break;
       }
     },
   };
 });
-
-Box.Application.startAll(document);
